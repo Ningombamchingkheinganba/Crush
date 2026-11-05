@@ -1,0 +1,228 @@
+
+/* Background */
+.background {
+  min-height: 100vh;
+  background: linear-gradient(
+    -45deg,
+    #ffb6c1,
+    #ffc0cb,
+    #ffe4e1,
+    #ff69b4
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+/* Card entrance */
+.card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px 25px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 15px 50px #d94c7b55;
+  animation: cardEnter 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Floating hearts */
+.floating-hearts span {
+  position: absolute;
+  bottom: -60px;
+  font-size: 28px;
+  animation: floatUp 9s linear infinite;
+  opacity: 0;
+}
+
+/* Sparkles */
+.sparkles span {
+  position: absolute;
+  top: 100%;
+  font-size: 22px;
+  animation: sparkleUp 7s linear infinite;
+}
+
+/* Glowing heading */
+.glow {
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* Teddy bear */
+.bear {
+  font-size: 75px;
+  margin: 20px;
+  animation: teddyDance 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Heart beat */
+.emoji {
+  font-size: 55px;
+  animation: heartbeat 1.2s infinite;
+}
+
+.big-heart {
+  font-size: 100px;
+  animation: heartbeat 0.8s infinite;
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 14px 28px;
+  font-size: 17px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.yes {
+  background: #ff4081;
+  color: white;
+  animation: buttonPulse 1.5s infinite;
+}
+
+.yes:hover {
+  transform: scale(1.15);
+}
+
+.no {
+  background: #ffe0eb;
+  color: #e75480;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+
+  position: relative;
+  transition: transform 0.25s ease;
+
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.no:hover {
+  background: #ffb6c1;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+/* YES screen */
+.success {
+  animation: celebration 1s ease;
+}
+
+.heart-explosion span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 25px;
+  pointer-events: none;
+  animation: explode 2.5s ease-out infinite;
+  animation-delay: calc(var(--i) * 0.08s);
+}
+
+/* Animations */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 0;
+  }
+  20% { opacity: 0.9; }
+  100% {
+    transform: translateY(-120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleUp {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 0;
+  }
+  30% { opacity: 1; }
+  100% {
+    transform: translateY(-120vh) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes teddyDance {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg) translateY(-12px); }
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 5px #ffb6c1; }
+  to { text-shadow: 0 0 20px #ff4081; }
+}
+
+@keyframes buttonPulse {
+  0%, 100% { box-shadow: 0 0 0 0 #ff408155; }
+  50% { box-shadow: 0 0 0 12px #ff408100; }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes celebration {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform:
+      translate(
+        calc(-50% + (var(--i) - 10) * 25px),
+        calc(-50% - 180px)
+      )
+      scale(1.5);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
